@@ -1,2 +1,3 @@
 # ApkPublisher
 Apk发布工具
+可在apk发布前在asserts目录下写入properties文件
