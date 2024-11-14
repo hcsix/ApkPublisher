@@ -9,13 +9,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>consoleApp</name>
+    <name>ApkPublisher</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
-        <kotlin.version>1.5.10</kotlin.version>
+        <kotlin.version>1.7.22</kotlin.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -34,7 +34,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>1.5.10</version>
+                <version>1.7.22</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -60,30 +60,6 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
-            <!-- 安装 apktool 到本地 Maven 仓库 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <executions>
-                    <execution>
-                        <id>install-apktool</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <file>${project.basedir}/libs/apktool_2.10.0.jar</file>
-                            <groupId>brut.apktool</groupId>
-                            <artifactId>apktool_lib</artifactId>
-                            <version>2.10.0</version>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
 
             <!-- Maven 打包插件 -->
             <plugin>
@@ -118,6 +94,7 @@
                     </resources>
                 </configuration>
             </plugin>
+
             <!-- Maven Shade 插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -157,6 +134,13 @@
             <version>2.10.0</version>
         </dependency>
 
+        <!-- ApkSigner 依赖 -->
+        <dependency>
+            <groupId>com.android</groupId>
+            <artifactId>apksigner</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -166,9 +150,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>1.5.10</version>
+            <version>${kotlin.version}</version>
         </dependency>
-
     </dependencies>
-
 </project>
